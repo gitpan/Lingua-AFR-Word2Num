@@ -15,11 +15,11 @@ use Parse::RecDescent;
 # }}}
 # {{{ variable declarations
 
-my($ver)      = ('$Rev: 440 $' =~ m{(\d+)}xms);
+my($ver)      = ('$Rev: 484 $' =~ m{(\d+)}xms);
 our $VERSION = $ver / 10_000;
 
 our $INFO = {
-    rev  => '$Rev: 440 $',
+    rev  => '$Rev: 484 $',
 };
 
 my $parser = af_numerals();
@@ -164,12 +164,13 @@ Lingua::AFR::Word2Num
 
 =head1 VERSION
 
-version 0.044
+version 0.0484
 
-text to positive number convertor for Afrikaans.
+Text to positive number convertor for Afrikaans.
+
 Input text must be encoded in utf8.
 
-=head2 $Rev: 440 $
+=head2 $Rev: 484 $
 
 ISO 639-3 namespace
 

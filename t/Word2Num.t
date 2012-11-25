@@ -10,11 +10,7 @@ use strict;
 use warnings;
 use utf8;
 
-use lib $ENV{PMLIB_INC};
-
 use Test::More;
-
-use PMLIB::Test          qw(:ALL);
 
 # }}}
 
