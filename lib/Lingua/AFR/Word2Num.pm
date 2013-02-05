@@ -1,7 +1,7 @@
 # For Emacs: -*- mode:cperl; mode:folding -*-
 
 package Lingua::AFR::Word2Num;
-# ABSTRACT: Lingua::AFR::Word2Num is module for converting text containing number representation in afrikaans back into number. Converts whole numbers from 0 up to 999 999 999 999.
+# ABSTRACT: Word 2 number conversion in AFR.
 
 # {{{ use block
 #
@@ -15,11 +15,10 @@ use Parse::RecDescent;
 # }}}
 # {{{ variable declarations
 
-my($ver)      = ('$Rev: 484 $' =~ m{(\d+)}xms);
-our $VERSION = $ver / 10_000;
+our $VERSION = 0.0577;
 
 our $INFO = {
-    rev  => '$Rev: 484 $',
+    rev  => '$Rev: 577 $',
 };
 
 my $parser = af_numerals();
@@ -164,13 +163,13 @@ Lingua::AFR::Word2Num
 
 =head1 VERSION
 
-version 0.0484
+version 0.0577
 
 Text to positive number convertor for Afrikaans.
 
 Input text must be encoded in utf8.
 
-=head2 $Rev: 484 $
+=head2 $Rev: 577 $
 
 ISO 639-3 namespace
 
@@ -183,6 +182,8 @@ ISO 639-3 namespace
  print defined($num) ? $num : "sorry, can't convert this text into number.";
 
 =head1 DESCRIPTION
+
+Word 2 number conversion in AFR.
 
 Lingua::AFR::Word2Num is module for converting text containing number
 representation in afrikaans back into number. Converts whole numbers from 0 up

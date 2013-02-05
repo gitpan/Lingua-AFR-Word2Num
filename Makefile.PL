@@ -9,7 +9,7 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Lingua::AFR::Word2Num is module for converting text containing number representation in afrikaans back into number. Converts whole numbers from 0 up to 999 999 999 999.",
+  "ABSTRACT" => "Word 2 number conversion in AFR.",
   "AUTHOR" => "PetaMem s.r.o. <info\@petamem.com>",
   "BUILD_REQUIRES" => {
     "Test::More" => 0,
@@ -28,7 +28,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.0484",
+  "VERSION" => "0.0577",
   "test" => {
     "TESTS" => "t/*.t"
   }
