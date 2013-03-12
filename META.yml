@@ -17,6 +17,7 @@ name: Lingua-AFR-Word2Num
 requires:
   Parse::RecDescent: 0
   Perl6::Export::Attrs: 0
+  perl: v5.10.1
   strict: 0
   warnings: 0
-version: 0.0577
+version: 0.0682

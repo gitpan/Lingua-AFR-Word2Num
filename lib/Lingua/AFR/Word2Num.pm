@@ -5,6 +5,9 @@ package Lingua::AFR::Word2Num;
 
 # {{{ use block
 #
+
+use 5.10.1;
+
 use strict;
 use warnings;
 
@@ -15,10 +18,10 @@ use Parse::RecDescent;
 # }}}
 # {{{ variable declarations
 
-our $VERSION = 0.0577;
+our $VERSION = 0.0682;
 
 our $INFO = {
-    rev  => '$Rev: 577 $',
+    rev  => '$Rev: 682 $',
 };
 
 my $parser = af_numerals();
@@ -163,13 +166,13 @@ Lingua::AFR::Word2Num
 
 =head1 VERSION
 
-version 0.0577
+version 0.0682
 
 Text to positive number convertor for Afrikaans.
 
 Input text must be encoded in utf8.
 
-=head2 $Rev: 577 $
+=head2 $Rev: 682 $
 
 ISO 639-3 namespace
 
