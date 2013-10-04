@@ -11,17 +11,18 @@ use 5.10.1;
 use strict;
 use warnings;
 
-use Perl6::Export::Attrs;
+use Carp;
 
+use Perl6::Export::Attrs;
 use Parse::RecDescent;
 
 # }}}
 # {{{ variable declarations
 
-our $VERSION = 0.0682;
+our $VERSION = 0.1101;
 
 our $INFO = {
-    rev  => '$Rev: 682 $',
+    rev  => '$Rev: 1067 $',
 };
 
 my $parser = af_numerals();
@@ -42,11 +43,11 @@ sub w2n :Export {
 
 sub af_numerals {
     return Parse::RecDescent->new(q{
-      numeral: million   { return $item[1]; }                         # root parse. go from maximum to minimum value
+      numeral: scrap     { return undef; }                            # root parse. go from maximum to minimum value
+        |      million   { return $item[1]; }                         # scrap is a container rule for cases out of bounds
         |      millenium { return $item[1]; }
         |      century   { return $item[1]; }
         |      decade    { return $item[1]; }
-        |                { return undef; }
 
       number: 'nul'        { $return = 0; }                           # try to find a word from 0 to 19
         |     'een'        { $return = 1; }
@@ -147,6 +148,13 @@ sub af_numerals {
                  }
                  $return = undef if (!$return);
                }
+
+     scrap: million(?) millenium(?) century(?) decade(?)             # if there is something else then the numerals defined above
+            /(.+)/
+            million(?) millenium(?) century(?) decade(?)             # return undef and give a word of warning
+            {
+              carp("unknown numeral '$1' !\n");
+            }
     });
 }
 
@@ -162,29 +170,11 @@ __END__
 
 =head1 NAME
 
-Lingua::AFR::Word2Num
+=head2 Lingua::AFR::Word2Num $Rev: 1067 $
 
 =head1 VERSION
 
-version 0.0682
-
-Text to positive number convertor for Afrikaans.
-
-Input text must be encoded in utf8.
-
-=head2 $Rev: 682 $
-
-ISO 639-3 namespace
-
-=head1 SYNOPSIS
-
- use Lingua::AFR::Word2Num;
-
- my $num = Lingua::AFR::Word2Num::w2n( 'een honderd, drie en twintig' );
-
- print defined($num) ? $num : "sorry, can't convert this text into number.";
-
-=head1 DESCRIPTION
+version 0.1101
 
 Word 2 number conversion in AFR.
 
@@ -195,23 +185,58 @@ to 999 999 999 999.
 =cut
 
 # }}}
+# {{{ SYNOPSIS
+
+=pod
+
+=head1 SYNOPSIS
+
+ use Lingua::AFR::Word2Num;
+
+ my $num = Lingua::AFR::Word2Num::w2n( 'een honderd, drie en twintig' );
+
+ print defined($num) ? $num : "sorry, can't convert this text into number.";
+
+=cut
+
+# }}}
 # {{{ Functions Reference
 
 =pod
 
-=head2 Functions Reference
+=head1 Functions Reference
 
 =over 2
 
-=item w2n (positional)
+=item B<w2n> (positional)
 
-  1   string  string to convert
-  =>  number  converted number
-      undef   if input string not known
+  1   str    string to convert
+  =>  num    converted number
+  =>  undef  if input string not known
 
 Convert text representation to number.
 
-=item af_numerals
+=item B<af_numerals> (void)
+
+  =>  obj  new parser object
+
+Internal parser.
+
+
+=back
+
+=cut
+
+# }}}
+# {{{ EXPORTED FUNCTIONS
+
+=pod
+
+=head1 EXPORT_OK
+
+=over 2
+
+=item w2n
 
 =back
 
@@ -220,25 +245,17 @@ Convert text representation to number.
 # }}}
 # {{{ POD FOOTER
 
-=head1 EXPORT_OK
-
-w2n
-
-=head1 KNOWN BUGS
-
-None.
+=pod
 
 =head1 AUTHOR
 
- Vitor Serra Mori <info@petamem.com>
+ coding, maintenance, refactoring, extensions, specifications:
+
+   Vitor Serra Mori <info@petamem.com>
 
 =head1 COPYRIGHT
 
 Copyright (C) PetaMem, s.r.o. 2004-present
-
-=head2 LICENSE
-
-Artistic license or BSD license.
 
 =cut
 

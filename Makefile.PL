@@ -23,12 +23,13 @@ my %WriteMakefileArgs = (
   "LICENSE" => "open_source",
   "NAME" => "Lingua::AFR::Word2Num",
   "PREREQ_PM" => {
+    "Carp" => 0,
     "Parse::RecDescent" => 0,
     "Perl6::Export::Attrs" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.0682",
+  "VERSION" => "0.1101",
   "test" => {
     "TESTS" => "t/*.t"
   }
