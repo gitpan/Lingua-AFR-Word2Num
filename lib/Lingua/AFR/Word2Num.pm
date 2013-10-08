@@ -19,10 +19,10 @@ use Parse::RecDescent;
 # }}}
 # {{{ variable declarations
 
-our $VERSION = 0.1101;
+our $VERSION = 0.1106;
 
 our $INFO = {
-    rev  => '$Rev: 1067 $',
+    rev  => '$Rev: 1106 $',
 };
 
 my $parser = af_numerals();
@@ -170,11 +170,11 @@ __END__
 
 =head1 NAME
 
-=head2 Lingua::AFR::Word2Num $Rev: 1067 $
+=head2 Lingua::AFR::Word2Num 
 
 =head1 VERSION
 
-version 0.1101
+version 0.1106
 
 Word 2 number conversion in AFR.
 
@@ -215,6 +215,8 @@ to 999 999 999 999.
   =>  undef  if input string not known
 
 Convert text representation to number.
+If the input string is not known, or out of the
+interval, undef is returned.
 
 =item B<af_numerals> (void)
 
